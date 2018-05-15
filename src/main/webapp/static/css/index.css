@@ -1,0 +1,9 @@
+body {
+    background: url("/static/img/pic1.png") fixed;
+    background-size: cover;
+}
+
+.center {
+    margin: 0 auto;
+    width: 80%;
+}

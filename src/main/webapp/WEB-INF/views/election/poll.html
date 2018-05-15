@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel of poll</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" th:href="@{/static/css/styles.css}"/>
+</head>
+<body>
+
+<div class="container">
+    <div th:if="${isConfigurationSet}==true">
+        <div class="row">
+            <div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2">
+                <form th:action="@{/election/poll}" method = "post" th:object="${electionConfiguration}">
+                    <div class="form-group">
+                        <table class="table">
+                            <thead>
+                            <th>Id wyborcy</th>
+                            <th>Okręg wyborczy</th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td th:text="*{voterDto.voterId}"></td>
+                                <td th:text="*{voterDto.constituencyName.toUpperCase()}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label class="h3 w3-text-indigo"><b>Wybierz kandydata</b></label>
+                        <br>
+                        <ul class="list-unstyled">
+                            <li th:each="c: *{votersCandidatesDto}" class="list-item">
+                                <input type="radio" th:field="*{chosenCandidateId}" th:value="${c.candidateId}" required="required"/>
+                                <label th:text="${c.candidateNameAndSurname}"></label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <input th:field="*{n}" hidden="hidden"/>
+                    <br>
+                    <div class="form-group">
+                        <input class="w3-btn w3-round-large w3-small w3-indigo w3-border w3-border-white" type="submit" value=" OK"/>
+                        <a class="w3-btn w3-round-large w3-small w3-indigo w3-border w3-border-white" href="/">
+                            <span class="glyphicon glyphicon-home"></span>  Home
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div th:if="${isConfigurationSet}==false">
+        <div class="row">
+            <label class="h3 w3-text-indigo"><b>Do przeprowadzenia głosowania potrzebna jest wcześniejsza konfiguracja okręgów, kandydatów oraz wyborców!</b></label>
+        </div>
+        <br>
+        <div class="row">
+            <a class="w3-btn w3-round-large w3-small w3-indigo w3-border w3-border-white" href="/">
+                <span class="glyphicon glyphicon-home"></span>  Home
+            </a>
+        </div>
+    </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+
+

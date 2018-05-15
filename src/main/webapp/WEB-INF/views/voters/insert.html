@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Configuration of voters</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" th:href="@{/static/css/styles.css}"/>
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-8 offset-xl-2 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-8 offset-sm-2">
+            <form th:action="@{/voters/insert}" method="post" th:object="${voterConfiguration}">
+                <table class="table">
+                    <thead>
+                    <th>Nazwa okręgu</th>
+                    <th>Ilość głosujących</th>
+                    </thead>
+                    <tbody>
+                    <tr th:each="c, stat : *{constituenciesDto}">
+                        <td>
+                            <label th:text="${c.constituencyName.toUpperCase()}"></label>
+                        </td>
+                        <td>
+                            <input type="number" min="1" th:field="*{voterNumbers[__${stat.index}__]}"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="form-group">
+                    <input class="w3-btn w3-round-large w3-small w3-indigo w3-border w3-border-white" type="submit" value="SEND"/>
+                    <input class="w3-btn w3-round-large w3-small w3-indigo w3-border w3-border-white" type="reset" value="RESET"/>
+                    <a class="w3-btn w3-round-large w3-small w3-indigo w3-border w3-border-white" href="/">
+                        <span class="glyphicon glyphicon-home"></span>  Home
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

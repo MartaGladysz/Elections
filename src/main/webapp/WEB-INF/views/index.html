@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Main site</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" th:href="@{/static/css/index.css}"/>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="center container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="constituency/insert">Konfiguracja okręgów wyborczych</a></li>
+            <li><a href="candidate/insert">Konfiguracja kandydatów</a></li>
+            <li><a href="voters/insert">Konfiguracja wyborców</a></li>
+            <li><a href="candidate/list"><b>LISTY WYBORCZE</b></a></li>
+        </ul>
+        <a class="btn w3-indigo navbar-btn" href="/election/poll/0">GŁOSOWANIE</a>
+        <a class="btn w3-blue-gray w3-hover-red navbar-btn " href="resetAll">KASOWANIE DANYCH</a>
+    </div>
+</nav>
+
+</body>
+</html>
+
+
+
